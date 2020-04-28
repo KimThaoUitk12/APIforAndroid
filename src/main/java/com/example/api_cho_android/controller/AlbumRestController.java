@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.api_cho_android.converter.AlbumConverter;
+import com.example.api_cho_android.converter.CaSiConverter;
 import com.example.api_cho_android.dto.AlbumDto;
+import com.example.api_cho_android.dto.BaiHatDto;
+import com.example.api_cho_android.dto.CaSiDto;
 import com.example.api_cho_android.model.Album;
+import com.example.api_cho_android.model.BaiHat;
 import com.example.api_cho_android.service.AlbumService;
 
 @RestController
@@ -26,6 +30,9 @@ public class AlbumRestController {
 	
 	@Autowired
 	private AlbumConverter albumConverter;
+	
+	@Autowired
+	private CaSiConverter caSiConverter;
 	
 	@GetMapping("/album/find-all")
 	public List<AlbumDto> findAllAlbum(){
@@ -48,6 +55,18 @@ public class AlbumRestController {
 	public List<AlbumDto> findAlbumByIdCaSi(@PathVariable int id) {
 		return albumConverter.convertToDto(albumService.findAlbumByIdCaSi(id));
 	}
+	
+	@GetMapping("/casi/find-casi-by-idalbum/{id}")
+	public CaSiDto findCaSiByIdAlbum(@PathVariable int id) {
+		return caSiConverter.convertToDto(albumService.findCaSiByIdAlbum(id));
+	}
+      @GetMapping("/album/find-random")
+     public List<AlbumDto> findRandom(){
+	List<Album> listAlbum=  new ArrayList<Album>();
+	listAlbum = albumService.findRandom();
+	return albumConverter.convertToDto(listAlbum);
+}
+	
 	@PostMapping("/album/add-album")
 	public AlbumDto addNewAlbum(@RequestBody AlbumDto albumDto) {
 		Album album = albumConverter.convertToEntity(albumDto);

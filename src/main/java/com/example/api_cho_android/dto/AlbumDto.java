@@ -1,5 +1,9 @@
 package com.example.api_cho_android.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.api_cho_android.model.BaiHat;
 
 public class AlbumDto {
 	
@@ -11,7 +15,17 @@ public class AlbumDto {
 	
 	private int idCaSi;
 	
-	private CaSiDto caSi;
+	//private CaSiDto caSi;
+
+	private List<BaiHatDto> listBaiHat = new ArrayList<BaiHatDto>();
+	
+	public List<BaiHatDto> getListBaiHat() {
+		return listBaiHat;
+	}
+
+	public void setListBaiHat(List<BaiHatDto> listBaiHat) {
+		this.listBaiHat = listBaiHat;
+	}
 
 	public int getIdAlbum() {
 		return idAlbum;
@@ -45,13 +59,16 @@ public class AlbumDto {
 		this.idCaSi = idCasi;
 	}
 
-	public CaSiDto getCaSi() {
+	
+	/*public CaSiDto getCaSi() {
 		return caSi;
-	}
+     }
 
 	public void setCaSi(CaSiDto caSi) {
 		this.caSi = caSi;
-	}
+	}*/
+
+	
 
 	public AlbumDto(int idAlbum, int soLuongBai, String tenAlbum, int idCasi) {
 		super();

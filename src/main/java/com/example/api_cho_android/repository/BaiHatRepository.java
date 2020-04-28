@@ -2,6 +2,7 @@ package com.example.api_cho_android.repository;
 
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -18,7 +19,6 @@ public interface BaiHatRepository extends JpaRepository<BaiHat,Integer>{
 	
 	@Query("select b from BaiHat b where b.idAlbum=?1")
 	List<BaiHat> findBaiHatByIdAlbum(int idAlbum);
-	
 	
 	
 }

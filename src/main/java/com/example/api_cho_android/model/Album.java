@@ -1,12 +1,18 @@
 package com.example.api_cho_android.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -34,7 +40,10 @@ public class Album {
 	@JoinColumn(name = "IDCASI", nullable=true, insertable = false, updatable = false)
 	private CaSi caSi;
 
-
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "album", cascade = CascadeType.ALL)
+	private List<BaiHat> listBaiHat = new ArrayList<BaiHat>();
+	
+	
 	public int getIdAlbum() {
 		return idAlbum;
 	}
@@ -82,6 +91,17 @@ public class Album {
 
 	public void setCaSi(CaSi caSi) {
 		this.caSi = caSi;
+	}
+
+
+
+	public List<BaiHat> getListBaiHat() {
+		return listBaiHat;
+	}
+
+
+	public void setListBaiHat(List<BaiHat> listBaiHat) {
+		this.listBaiHat = listBaiHat;
 	}
 
 

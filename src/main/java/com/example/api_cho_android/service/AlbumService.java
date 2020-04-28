@@ -4,6 +4,8 @@ import java.util.List;
 
 
 import com.example.api_cho_android.model.Album;
+import com.example.api_cho_android.model.BaiHat;
+import com.example.api_cho_android.model.CaSi;
 
 public interface AlbumService {
 
@@ -20,4 +22,8 @@ public interface AlbumService {
 	public List<Album> findAlbumByTenAlbum(String tenAlbum);
 	
 	public List<Album> findAlbumByIdCaSi(int idCaSi);
+	
+	public List<Album> findRandom();
+	
+	public CaSi findCaSiByIdAlbum(int idAlbum);
 }

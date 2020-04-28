@@ -2,11 +2,18 @@ package com.example.api_cho_android.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.example.api_cho_android.model.Album;
+import com.example.api_cho_android.model.BaiHat;
+import com.example.api_cho_android.model.CaSi;
 import com.example.api_cho_android.repository.AlbumRepository;
+import com.example.api_cho_android.repository.CaSiRepository;
 import com.example.api_cho_android.service.AlbumService;
 
 @Service
@@ -14,6 +21,8 @@ public class AlbumServiceImpl implements AlbumService{
 
 	@Autowired
 	private AlbumRepository albumRepository ;
+	@Autowired
+	private CaSiRepository caSiRepository;
 	
 	@Override
 	public List<Album> findAll() {
@@ -63,6 +72,34 @@ public class AlbumServiceImpl implements AlbumService{
 		List<Album> listAlbum = new ArrayList<Album>();
 		listAlbum = albumRepository.findAlbumByIdCaSi(idCaSi);
 		return listAlbum;
+	}
+
+	@Override
+	public List<Album> findRandom() {
+		List<Album> listAlbum = new ArrayList<Album>();
+
+		Random rand = new Random();
+	    List<Album> givenList = albumRepository.findAll();
+	 
+	    int numberOfElements = 3;
+
+	    for (int i = 0; i <numberOfElements ; i++) {
+	        int randomIndex = rand.nextInt(givenList.size());
+	        Album randomElement = givenList.get(randomIndex);
+	        listAlbum.add(randomElement);
+	        givenList.remove(randomIndex);
+	    }
+		return listAlbum;
+	}
+
+	@Override
+	public CaSi findCaSiByIdAlbum(int idAlbum) {
+		Album album = new Album();
+		album = albumRepository.findById(idAlbum).get();
+		int idCaSi = album.getIdCasi();
+		CaSi caSi= caSiRepository.findById(idCaSi).get();
+		return caSi;
+	
 	}
 
 }

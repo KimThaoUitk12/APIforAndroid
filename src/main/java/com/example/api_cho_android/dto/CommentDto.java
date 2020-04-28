@@ -14,7 +14,7 @@ public class CommentDto {
 	
 	private String noiDung;
 	
-	private BaiHatDto baiHat;
+	//private BaiHatDto baiHat;
 	
 	//private NguoiDungDto nguoiDung;
 
@@ -50,14 +50,14 @@ public class CommentDto {
 		this.noiDung = noiDung;
 	}
 
-	public BaiHatDto getBaiHat() {
+	/*public BaiHatDto getBaiHat() {
 		return baiHat;
 	}
 
 	public void setBaiHat(BaiHatDto baiHat) {
 		this.baiHat = baiHat;
 	}
-
+*/
 /*	public NguoiDungDto getNguoiDung() {
 		return nguoiDung;
 	}

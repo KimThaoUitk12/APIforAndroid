@@ -2,8 +2,10 @@ package com.example.api_cho_android.service;
 
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 
 import com.example.api_cho_android.model.BaiHat;
+import com.example.api_cho_android.model.CaSi;
 
 public interface BaiHatService {
 
@@ -23,4 +25,11 @@ public interface BaiHatService {
 		public List<BaiHat> findBaiHatByIdCasi(int idCaSi);
 		
 		public List<BaiHat> findBaiHatByIdAlbum(int idAlbum);
+		
+		public List<BaiHat> findTop100Bxh( );
+		
+		public List<BaiHat> findRandom();
+		
+		public CaSi findCaSiByIdBaiHat(int idBaiHat);
+		
 }

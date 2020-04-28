@@ -23,9 +23,9 @@ public class BaiHatDto {
 	
 	private int idCaSi;
 
-    private CaSiDto caSi;
+   // private CaSiDto caSi;
 	
-    private AlbumDto album;
+ //  private AlbumDto album;
 
 	private List<CommentDto> listComment = new ArrayList<CommentDto>();
 
@@ -101,7 +101,7 @@ public class BaiHatDto {
 		this.idCaSi = idCaSi;
 	}
 
-	public CaSiDto getCaSi() {
+/*	public CaSiDto getCaSi() {
 		return caSi;
 	}
 
@@ -116,7 +116,7 @@ public class BaiHatDto {
 	public void setAlbum(AlbumDto album) {
 		this.album = album;
 	}
-
+*/
 	public List<CommentDto> getListComment() {
 		return listComment;
 	}
