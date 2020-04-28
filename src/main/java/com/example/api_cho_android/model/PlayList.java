@@ -1,14 +1,19 @@
 package com.example.api_cho_android.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@Entity(name = "PLAYLIST")
 public class PlayList {
     @Id
     private String idPlayList;
     private String tenPlayList;
     private int idNguoiDung;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private NguoiDung fk_play_nd;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private BaiHat_PlayList fk_list_bhpl;
 
     public String getIdPlayList() {
         return idPlayList;

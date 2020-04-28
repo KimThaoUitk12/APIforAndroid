@@ -4,11 +4,12 @@ import com.example.api_cho_android.model.PlayList;
 import com.example.api_cho_android.repository.PlayListRepository;
 import com.example.api_cho_android.service.PlayListService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class PlayListServiceImpl implements PlayListService {
     @Autowired
     PlayListRepository playListRepository;
@@ -48,7 +49,7 @@ public class PlayListServiceImpl implements PlayListService {
     }
 
     @Override
-    public void delPlayListByNguoiDung(int id) {
+    public void delPlayList(int id) {
         playListRepository.deleteById(id);
     }
 

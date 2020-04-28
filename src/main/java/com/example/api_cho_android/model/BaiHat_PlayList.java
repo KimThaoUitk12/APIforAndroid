@@ -2,17 +2,21 @@ package com.example.api_cho_android.model;
 
 import com.example.api_cho_android.keyclass.KeyForBaiHat_PlayList;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.*;
 
-@Entity
+@Entity(name = "BAIHAT_PLAYLIST")
 @IdClass(KeyForBaiHat_PlayList.class)
 public class BaiHat_PlayList {
     @Id
     private int idBaiHat;
     @Id
     private int idPlayList;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    private BaiHat fk_bhpl_bh;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    private PlayList fk_bhpl_pl;
 
     public int getIdBaiHat() {
         return idBaiHat;

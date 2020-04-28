@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BaiHat_PlayListServiceImpl implements BaiHat_PlayListService {
     @Autowired
     BaiHat_PlayListRepository baiHat_playListRepository;
@@ -22,10 +24,8 @@ public class BaiHat_PlayListServiceImpl implements BaiHat_PlayListService {
         baiHat_playListRepository.deleteById(new KeyForBaiHat_PlayList(idBaiHat,idPlayList));
     }
 
-    @Override
-    @Modifying
-    @Query("delete from BaiHat_PlayList bhpl where bhpl.idPlayList=:idPlayList")
+
     public void delete1List(@Param("idPlayList") int idPlayList) {
-        //
+        baiHat_playListRepository.delete1List(idPlayList);
     }
 }

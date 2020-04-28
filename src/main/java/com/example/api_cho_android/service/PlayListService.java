@@ -11,6 +11,6 @@ public interface PlayListService {
     List<PlayList> findByName(String name, int idNguoiDung);
     List<PlayList> findByIdNguoiDung(int idNguoiDung);
     void addPlayList(PlayList playList);
-    void delPlayListByNguoiDung(int id);
+    void delPlayList(int id);
     void updatePlayList(int id, PlayList playList);
 }

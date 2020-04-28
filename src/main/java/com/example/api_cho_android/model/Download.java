@@ -2,12 +2,10 @@ package com.example.api_cho_android.model;
 
 import com.example.api_cho_android.keyclass.KeyForDownload;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+@Entity(name = "DOWNLOAD")
 @IdClass(KeyForDownload.class)
 public class Download {
     @Id
@@ -16,6 +14,12 @@ public class Download {
     private String idNguoiDung;
     @Id
     private String thoiDiemTai;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    private BaiHat fk_down_bh;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    private NguoiDung fk_down_nd;
 
     public String getIdBaiHat() {
         return idBaiHat;

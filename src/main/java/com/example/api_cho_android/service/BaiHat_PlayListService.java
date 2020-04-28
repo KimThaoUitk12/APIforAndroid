@@ -10,7 +10,5 @@ import org.springframework.stereotype.Service;
 public interface BaiHat_PlayListService {
     void addBaiHat_PlayList(BaiHat_PlayList baiHat_playList);
     void delBaiHat_PlayList(int idBaiHat,int idPlayList);
-    @Modifying
-    @Query("delete from BaiHat_PlayList bhpl where bhpl.idPlayList=:idPlayList")
     void delete1List(@Param("idPlayList")int idPlayList);
 }
