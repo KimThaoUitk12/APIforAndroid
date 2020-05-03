@@ -50,18 +50,13 @@ public class CaSiServiceImpl implements CaSiService {
 		return entity;
 	}
 
-	/*@Override
-	public CaSi findCaSiByIdAbum(int idAbum) {
-		CaSi caSi = new CaSi();
-		caSi = caSiRepository.findCaSiByIdAbum(idAbum);
-		return caSi;
+	@Override
+	public List<CaSi> findByName(String tenCaSi) {
+		List<CaSi> listCaSi = new ArrayList<CaSi>();
+		listCaSi = caSiRepository.findByName(tenCaSi);
+		return listCaSi;
 	}
 
-	@Override
-	public CaSi findCaSiByIdBaiHat(int idBaiHat) {
-		CaSi caSi = new CaSi();
-		caSi = caSiRepository.findCaSiByIdBaiHat(idBaiHat);
-		return caSi;
-	}*/
+	
 
 }

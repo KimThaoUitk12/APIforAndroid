@@ -1,5 +1,6 @@
 package com.example.api_cho_android.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,16 +12,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 
 
 @Entity
 @Table(name="casi" )
-public class CaSi {
+public class CaSi  implements Serializable {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GenericGenerator(name="gen",strategy="increment")
+	@GeneratedValue(generator="gen")
 	@Column(name = "IDCASI", nullable = false)
 	private int idCaSi;
 	

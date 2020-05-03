@@ -1,6 +1,5 @@
 package com.example.api_cho_android.keyclass;
 
-import javax.persistence.Id;
 import java.io.Serializable;
 
 public class KeyForBaiHat_PlayList implements Serializable {
@@ -13,4 +12,9 @@ public class KeyForBaiHat_PlayList implements Serializable {
         this.idBaiHat = idBaiHat;
         this.idPlayList = idPlayList;
     }
+
+	public KeyForBaiHat_PlayList() {
+		super();
+	}
+    
 }

@@ -5,8 +5,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface NguoiDungService {
-    NguoiDung getNguoiDung(int id);
-    void addNguoiDung(NguoiDung nguoiDung);
-    void delNguoiDung(int id);
-    void updatePass(int id, NguoiDung nguoiDung);
+	public  NguoiDung getNguoiDung(int id);
+	public NguoiDung findByTen(String ten);
+	public   NguoiDung addNguoiDung(NguoiDung nguoiDung);
+	public void deleteNguoiDung(int id);
+	public NguoiDung updatePass( NguoiDung nguoiDung);
 }

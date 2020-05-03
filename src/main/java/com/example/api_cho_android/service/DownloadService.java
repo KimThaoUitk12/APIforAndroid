@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface DownloadService {
-    void addDownload(Download download);
+	public Download addDownload(Download download);
 }

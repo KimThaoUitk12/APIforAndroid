@@ -11,6 +11,8 @@ public interface CaSiService {
 		
 		public CaSi findById(int id);
 		
+		public List<CaSi> findByName(String tenCaSi);
+		
 		public CaSi addNew(CaSi caSi);
 		
 		public void delete(int id);

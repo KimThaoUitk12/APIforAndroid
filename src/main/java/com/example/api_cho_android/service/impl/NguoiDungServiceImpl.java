@@ -1,5 +1,6 @@
 package com.example.api_cho_android.service.impl;
 
+import com.example.api_cho_android.model.Album;
 import com.example.api_cho_android.model.NguoiDung;
 import com.example.api_cho_android.repository.NguoiDungRepository;
 import com.example.api_cho_android.service.NguoiDungService;
@@ -17,25 +18,34 @@ public class NguoiDungServiceImpl implements NguoiDungService {
         Optional<NguoiDung> nguoiDung=nguoiDungRepository.findById(id);
         return nguoiDung.isPresent()?nguoiDung.get():null;
     }
-
     @Override
-    public void addNguoiDung(NguoiDung nguoiDung) {
-        nguoiDungRepository.save(nguoiDung);
+	public NguoiDung findByTen(String ten) {
+    	NguoiDung nguoiDung = new NguoiDung();
+    	nguoiDung = nguoiDungRepository.findByTenNguoiDung(ten);
+		return nguoiDung;
+	}
+    @Override
+    public NguoiDung addNguoiDung(NguoiDung nguoiDung) {
+       return nguoiDungRepository.saveAndFlush(nguoiDung);
     }
 
     @Override
-    public void delNguoiDung(int id) {
+    public void deleteNguoiDung(int id) {
         nguoiDungRepository.deleteById(id);
     }
 
     @Override
-    public void updatePass(int id, NguoiDung nguoiDung) {
-        Optional<NguoiDung> nd=nguoiDungRepository.findById(id);
-        if(nd.isPresent()){
-            nd.get().setPass(nguoiDung.getPass());
-            nd.get().setEmail(nguoiDung.getEmail());
-            nd.get().setTen(nguoiDung.getTen());
-            nguoiDungRepository.save(nd.get());
-        }
+    public NguoiDung updatePass( NguoiDung nguoiDung) {
+    	NguoiDung edit = new NguoiDung();
+    	edit =nguoiDungRepository.findById(nguoiDung.getIdNguoiDung()).get();
+        
+    	edit.setPass(nguoiDung.getPass());
+    	edit.setEmail(nguoiDung.getEmail());
+    	edit.setTen(nguoiDung.getTen());
+    	NguoiDung entity=   nguoiDungRepository.save(edit);
+         return entity;
+        
     }
+
+	
 }

@@ -33,42 +33,53 @@ public class BaiHatRestController {
 	@Autowired
 	private CaSiConverter caSiConverter;
 	
+	//Lấy tất cả baihat
 	@GetMapping("/baihat/find-all")
 	public List<BaiHatDto> findAllBaiHat(){
 		List<BaiHat> listBaiHat=  new ArrayList<BaiHat>();
 		listBaiHat = baiHatService.findAll();
 		return baiHatConverter.convertToDto(listBaiHat);
 	}
+	
+	// lây top 100 bài hát có lượt nghe nhiều nhất
 	@GetMapping("/baihat/find-bxh")
 	public List<BaiHatDto> findTop100Bxh(){
 		List<BaiHat> listBaiHat=  new ArrayList<BaiHat>();
 		listBaiHat = baiHatService.findTop100Bxh();
 		return baiHatConverter.convertToDto(listBaiHat);
 	}
+	
+	// tìm bài hát by id bai hát
 	@GetMapping("/baihat/find-by-idbaihat/{id}")
 	public BaiHatDto findBaiHatByIdBaiHat(@PathVariable int id) {
 		return baiHatConverter.convertToDto(baiHatService.findById(id));
 	}
 		
+    // tìm ca si by id bài hát	
 	@GetMapping("/casi/find-casi-by-idbaihat/{id}")
 	public CaSiDto findCaSiByIdBaiHat(@PathVariable int id) {
 		return caSiConverter.convertToDto(baiHatService.findCaSiByIdBaiHat(id));
 	}
+	
+	//tìm bài hát by tên bài hát
 	@GetMapping("/baihat/find-by-tenbaihat/{tenBaiHat}")
 	public List<BaiHatDto> findBaiHatByTenBaiHat(@PathVariable String tenBaiHat) {
 		return baiHatConverter.convertToDto(baiHatService.findBaiHatByTenBaiHat(tenBaiHat));
 	}
 	
+	//tìm bài hát by id ca sĩ
 	@GetMapping("/baihat/find-by-idcasi/{id}")
 	public List<BaiHatDto> findBaiHatByIdCasi(@PathVariable int id) {
 		return baiHatConverter.convertToDto(baiHatService.findBaiHatByIdCasi(id));
 	}
 	
-	
+	// tìm bài hát by id album
 	@GetMapping("/baihat/find-by-idalbum/{id}")
 	public List<BaiHatDto> findBaiHatByIdAlbum(@PathVariable int id) {
 		return baiHatConverter.convertToDto(baiHatService.findBaiHatByIdAlbum(id));
 	}
+	
+	//Lấy 10 số bài hát ngẫu nhiên gợi ý
 	@GetMapping("/baihat/find-random")
 	public List<BaiHatDto> findRandom(){
 		List<BaiHat> listBaiHat=  new ArrayList<BaiHat>();
@@ -76,6 +87,7 @@ public class BaiHatRestController {
 		return baiHatConverter.convertToDto(listBaiHat);
 	}
 	
+	// thêm bai hat
 	@PostMapping("/baihat/add-baihat")
 	public BaiHatDto addNewBaiHat(@RequestBody BaiHatDto baihatDto) {
 		BaiHat baiHat = baiHatConverter.convertToEntity(baihatDto);
@@ -83,10 +95,13 @@ public class BaiHatRestController {
 		return dto;
 	}
 
+	// xóa bài hát
 	@DeleteMapping("/baihat/delete-baihat/{id}")
 	public void deleteBaiHat(@PathVariable int id) {
 		baiHatService.delete(id);
 	}
+	
+	// sửa bài hát
 	@PutMapping("/baihat/edit-baihat")
 	public BaiHatDto editBaiHat(@RequestBody BaiHatDto baiHatDto) {
 		BaiHat baiHat = baiHatConverter.convertToEntity(baiHatDto);

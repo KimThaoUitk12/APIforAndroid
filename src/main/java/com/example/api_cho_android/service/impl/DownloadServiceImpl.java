@@ -11,7 +11,9 @@ public class DownloadServiceImpl implements DownloadService {
     @Autowired
     DownloadRepository downloadRepository;
     @Override
-    public void addDownload(Download download) {
-        downloadRepository.save(download);
+    public Download addDownload(Download download) {
+    	Download dl= new Download();  
+    	dl= downloadRepository.saveAndFlush(download);
+        return dl;
     }
 }

@@ -34,6 +34,7 @@ public class AlbumRestController {
 	@Autowired
 	private CaSiConverter caSiConverter;
 	
+	//Lấy tất cả album
 	@GetMapping("/album/find-all")
 	public List<AlbumDto> findAllAlbum(){
 		List<Album> listAlbum=  new ArrayList<Album>();
@@ -41,32 +42,38 @@ public class AlbumRestController {
 		return albumConverter.convertToDto(listAlbum);
 	}
 	
-	
+	// Tìm album by id album
 	@GetMapping("/album/find-by-idalbum/{id}")
 	public AlbumDto findAlbumByIdAlbum(@PathVariable int id) {
 		return albumConverter.convertToDto(albumService.findById(id));
 	}
 	
+	// Tìm album by tên album
 	@GetMapping("/album/find-by-tenalbum/{tenAlbum}")
 	public List<AlbumDto> findAlbumByTenAlbum(@PathVariable String tenAlbum) {
 		return albumConverter.convertToDto(albumService.findAlbumByTenAlbum(tenAlbum));
 	}
+	
+	// tìm album by id ca sĩ
 	@GetMapping("/album/find-by-idcasi/{id}")
 	public List<AlbumDto> findAlbumByIdCaSi(@PathVariable int id) {
 		return albumConverter.convertToDto(albumService.findAlbumByIdCaSi(id));
 	}
 	
+	//tìm ca sĩ by id album
 	@GetMapping("/casi/find-casi-by-idalbum/{id}")
 	public CaSiDto findCaSiByIdAlbum(@PathVariable int id) {
 		return caSiConverter.convertToDto(albumService.findCaSiByIdAlbum(id));
 	}
+	
+	//lấy 3 album ngẫu nhiên gợi ý
       @GetMapping("/album/find-random")
      public List<AlbumDto> findRandom(){
 	List<Album> listAlbum=  new ArrayList<Album>();
 	listAlbum = albumService.findRandom();
 	return albumConverter.convertToDto(listAlbum);
 }
-	
+	// Thêm album
 	@PostMapping("/album/add-album")
 	public AlbumDto addNewAlbum(@RequestBody AlbumDto albumDto) {
 		Album album = albumConverter.convertToEntity(albumDto);
@@ -74,10 +81,13 @@ public class AlbumRestController {
 		return dto;
 	}
 
+	// xóa album
 	@DeleteMapping("/album/delete-album/{id}")
 	public void deleteAlbum(@PathVariable int id) {
 		albumService.delete(id);
 	}
+	
+	//sưa album
 	@PutMapping("/album/edit-album")
 	public AlbumDto editAlbum(@RequestBody AlbumDto albumDto) {
 		Album album = albumConverter.convertToEntity(albumDto);

@@ -28,6 +28,7 @@ public class CaSiRestController {
 	@Autowired
 	private CaSiConverter caSiConverter;
 	
+	// lấy tất cả ca sĩ
 	@GetMapping("/casi/find-all")
 	public List<CaSiDto> findAllCaSi(){
 		List<CaSi> listCaSi =  new ArrayList<CaSi>();
@@ -35,31 +36,33 @@ public class CaSiRestController {
 		return caSiConverter.convertToDto(listCaSi);
 	}
 	
+	// tìm ca sĩ by id ca sĩ
 	@GetMapping("/casi/find-by-idcasi/{id}")
 	public CaSiDto findCaSiByIdCaSI(@PathVariable int id) {
 		return caSiConverter.convertToDto(caSiService.findById(id));
 	}
 	
-/*	@GetMapping("/casi/find-by-idalbum/{id}")
-	public CaSiDto findCaSiByIdAbum(@PathVariable int id) {
-		return caSiConverter.convertToDto(caSiService.findCaSiByIdAbum(id));
+	// tìm ca sĩ by ten ca si
+	@GetMapping("/casi/find-by-tencasi/{tenCaSi}")
+	public List<CaSiDto> findByTenCaSi(@PathVariable String tenCaSi){
+		List<CaSi> listCaSi =  new ArrayList<CaSi>();
+		listCaSi = caSiService.findByName(tenCaSi);
+		return caSiConverter.convertToDto(listCaSi);
 	}
-	@GetMapping("/casi/find-by-idbaihat/{id}")
-	public CaSiDto findCaSiByIdBaiHat(@PathVariable int id) {
-		return caSiConverter.convertToDto(caSiService.findCaSiByIdBaiHat(id));
-	}*/
-		
+	
+   // thêm ca sĩ
 	@PostMapping("/casi/add-casi")
 	public CaSiDto addNewCaSI(@RequestBody CaSiDto caSiDto) {
 		CaSi caSi = caSiConverter.convertToEntity(caSiDto);
 		CaSiDto dto = caSiConverter.convertToDto(caSiService.addNew(caSi));
 		return dto;
 	}
-
+   // xóa ca sĩ
 	@DeleteMapping("/casi/delete-casi/{id}")
 	public void deleteCaSi(@PathVariable int id) {
 		caSiService.delete(id);
 	}
+	// sửa ca sĩ
 	@PutMapping("/casi/edit-casi")
 	public CaSiDto editCaSi(@RequestBody CaSiDto caSiDto) {
 		CaSi caSi = caSiConverter.convertToEntity(caSiDto);

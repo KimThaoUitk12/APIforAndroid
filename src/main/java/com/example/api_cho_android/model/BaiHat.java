@@ -13,7 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 
 
@@ -22,7 +25,8 @@ import javax.persistence.Table;
 public class BaiHat {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GenericGenerator(name="gen",strategy="increment")
+	@GeneratedValue(generator="gen")
 	@Column(name = "IDBAIHAT", nullable = false)
 	private int idBaiHat;
 	
@@ -44,7 +48,7 @@ public class BaiHat {
 	@Column(name = "LYRICS", nullable = false)
 	private String lyrics;
 	
-	@Column(name = "IDAlbum", nullable = false)
+	@Column(name = "IDAlBUM", nullable = false)
 	private int idAlbum;
 	
 	@Column(name = "IDCASI", nullable = false)
@@ -60,6 +64,12 @@ public class BaiHat {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "baiHat", cascade = CascadeType.ALL)
 	private List<Comment> listComment = new ArrayList<Comment>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "baiHat", cascade = CascadeType.ALL)
+	private List<Download> listDownload = new ArrayList<Download>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "baiHat", cascade = CascadeType.ALL)
+	private List<BaiHat_PlayList> listBaiHat_PlayList = new ArrayList<BaiHat_PlayList>();
 	
 	public int getIdBaiHat() {
 		return idBaiHat;
@@ -138,6 +148,7 @@ public class BaiHat {
 	public void setListComment(List<Comment> listComment) {
 		this.listComment = listComment;
 	}
+	
 	
 	public BaiHat(int idBaiHat, String tenBaiHat, String tenTacGia, String link, String theLoai, int luotNghe,
 			String lyrics, int idAlbum, int idCaSi) {

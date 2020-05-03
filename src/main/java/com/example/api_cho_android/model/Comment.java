@@ -75,6 +75,8 @@ public class Comment {
 		this.noiDung = noiDung;
 	}
 
+	
+
 	public BaiHat getBaiHat() {
 		return baiHat;
 	}

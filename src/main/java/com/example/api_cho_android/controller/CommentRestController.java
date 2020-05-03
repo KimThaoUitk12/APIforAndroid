@@ -25,6 +25,7 @@ public class CommentRestController {
 	@Autowired
 	private CommentConverter commentConverter;
 	
+	//tất cả comment
 	@GetMapping("/comment/find-all")
 	public List<CommentDto> findAllComment(){
 		List<Comment> listComment =  new ArrayList<Comment>();
@@ -32,22 +33,26 @@ public class CommentRestController {
 		return commentConverter.convertToDto(listComment);
 	}
 	
+	// tìm comment by id bai hát
 	@GetMapping("/comment/find-by-idbaihat/{id}")
 	public List<CommentDto> findCommentByIdBaiHat(@PathVariable int id) {
 		return commentConverter.convertToDto(commentService.findCommentByIdBaiHat(id));
 	}
 	
+	// tìm comment by id người dùng
 	@GetMapping("/comment/find-by-idnguoidung/{id}")
 	public List<CommentDto> findCommentByIdNguoiDung(@PathVariable int id) {
 		return commentConverter.convertToDto(commentService.findCommentByIdNguoiDung(id));
 	}
 	
+	// thêm comment
 	@PostMapping("/comment/add-comment")
 	public CommentDto addNewComment(@RequestBody CommentDto commentDTO) {
 		Comment comment = commentConverter.convertToEntity(commentDTO);
 		CommentDto dto = commentConverter.convertToDto(commentService.addNew(comment));
 		return dto;
 	}
+	
 
 	
 	

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface BaiHat_PlayListService {
-    void addBaiHat_PlayList(BaiHat_PlayList baiHat_playList);
-    void delBaiHat_PlayList(int idBaiHat,int idPlayList);
-    void delete1List(@Param("idPlayList")int idPlayList);
+	public BaiHat_PlayList addBaiHat_PlayList(BaiHat_PlayList baiHat_playList);
+	public void delBaiHat_PlayList(int idBaiHat,int idPlayList);
+    public void delete1List(int idPlayList);
 }

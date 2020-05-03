@@ -5,52 +5,103 @@ import com.example.api_cho_android.keyclass.KeyForDownload;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "DOWNLOAD")
+@Entity
+@Table(name="download")
 @IdClass(KeyForDownload.class)
 public class Download {
     @Id
-    private String idBaiHat;
+    @Column(name = "IDBAIHAT", nullable = false)
+    private int idBaiHat;
     @Id
-    private String idNguoiDung;
+    @Column(name = "IDNGUOIDUNG", nullable = false)
+    private int idNguoiDung;
     @Id
-    private String thoiDiemTai;
+    @Column(name = "THOIDIEMTAI", nullable = false)
+    private Date thoiDiemTai;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private BaiHat fk_down_bh;
+    @ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "IDBAIHAT", insertable = false, updatable = false)
+	private BaiHat baiHat;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "IDNGUOIDUNG", insertable = false, updatable = false)
+	private NguoiDung nguoiDung;
+  
+    
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private NguoiDung fk_down_nd;
+    public BaiHat getBaiHat() {
+		return baiHat;
+	}
 
-    public String getIdBaiHat() {
-        return idBaiHat;
-    }
 
-    public String getIdNguoiDung() {
-        return idNguoiDung;
-    }
 
-    public String getThoiDiemTai() {
-        return thoiDiemTai;
-    }
+	public void setBaiHat(BaiHat baiHat) {
+		this.baiHat = baiHat;
+	}
 
-    public void setIdBaiHat(String idBaiHat) {
-        this.idBaiHat = idBaiHat;
-    }
 
-    public void setIdNguoiDung(String idNguoiDung) {
-        this.idNguoiDung = idNguoiDung;
-    }
 
-    public void setThoiDiemTai(String thoiDiemTai) {
-        this.thoiDiemTai = thoiDiemTai;
-    }
+	public NguoiDung getNguoiDung() {
+		return nguoiDung;
+	}
 
-    public Download(String idBaiHat, String idNguoiDung, String thoiDiemTai) {
-        this.idBaiHat = idBaiHat;
-        this.idNguoiDung = idNguoiDung;
-        this.thoiDiemTai = thoiDiemTai;
-    }
 
-    public Download() {
+
+	public void setNguoiDung(NguoiDung nguoiDung) {
+		this.nguoiDung = nguoiDung;
+	}
+
+
+
+	public int getIdBaiHat() {
+		return idBaiHat;
+	}
+
+
+
+	public void setIdBaiHat(int idBaiHat) {
+		this.idBaiHat = idBaiHat;
+	}
+
+
+
+	public int getIdNguoiDung() {
+		return idNguoiDung;
+	}
+
+
+
+	public void setIdNguoiDung(int idNguoiDung) {
+		this.idNguoiDung = idNguoiDung;
+	}
+
+
+
+	
+
+
+
+	public Date getThoiDiemTai() {
+		return thoiDiemTai;
+	}
+
+
+
+	public void setThoiDiemTai(Date thoiDiemTai) {
+		this.thoiDiemTai = thoiDiemTai;
+	}
+
+
+
+	public Download(int idBaiHat, int idNguoiDung, Date thoiDiemTai) {
+		super();
+		this.idBaiHat = idBaiHat;
+		this.idNguoiDung = idNguoiDung;
+		this.thoiDiemTai = thoiDiemTai;
+	}
+
+
+
+	public Download() {
     }
 }

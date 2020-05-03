@@ -15,13 +15,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 
 @Entity
 @Table(name="album")
 public class Album {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GenericGenerator(name="gen",strategy="increment")
+	@GeneratedValue(generator="gen")
 	@Column(name = "IDALBUM", nullable = false)
     private int idAlbum;
 

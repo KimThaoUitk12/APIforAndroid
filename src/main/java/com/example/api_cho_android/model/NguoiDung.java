@@ -1,22 +1,33 @@
 package com.example.api_cho_android.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
-@Entity(name = "NGUOIDUNG")
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name="nguoidung")
 public class NguoiDung {
     @Id
+    @Column(name = "IDNGUOIDUNG", nullable = false)
+	@GenericGenerator(name="gen",strategy="increment")
+	@GeneratedValue(generator="gen")
     private int idNguoiDung;
     private String ten;
     private String email;
     private String pass;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private PlayList fk_nd_list;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nguoiDung", cascade = CascadeType.ALL)
+    private List<PlayList> listPlayList = new ArrayList<PlayList>();
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Download fk_nd_down;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nguoiDung", cascade = CascadeType.ALL)
+    private List<Comment> listComment = new ArrayList<Comment>();
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nguoiDung", cascade = CascadeType.ALL)
+    private List<Download> listDownload  = new ArrayList<Download>();
 
     public int getIdNguoiDung() {
         return idNguoiDung;
@@ -52,7 +63,33 @@ public class NguoiDung {
 
 
 
-    public NguoiDung(int idNguoiDung, String ten, String email, String pass) {
+ 
+
+	public List<PlayList> getListPlayList() {
+		return listPlayList;
+	}
+
+	public void setListPlayList(List<PlayList> listPlayList) {
+		this.listPlayList = listPlayList;
+	}
+
+	public List<Comment> getListComment() {
+		return listComment;
+	}
+
+	public void setListComment(List<Comment> listComment) {
+		this.listComment = listComment;
+	}
+
+	public List<Download> getListDownload() {
+		return listDownload;
+	}
+
+	public void setListDownload(List<Download> listDownload) {
+		this.listDownload = listDownload;
+	}
+
+	public NguoiDung(int idNguoiDung, String ten, String email, String pass) {
         this.idNguoiDung = idNguoiDung;
         this.ten = ten;
         this.email = email;

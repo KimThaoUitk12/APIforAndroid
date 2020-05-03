@@ -1,5 +1,7 @@
 package com.example.api_cho_android.controller;
 
+import com.example.api_cho_android.converter.PlayListConverter;
+import com.example.api_cho_android.dto.PlayListDto;
 import com.example.api_cho_android.model.PlayList;
 import com.example.api_cho_android.service.impl.PlayListServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,42 +10,52 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class PlayListController {
     @Autowired
     PlayListServiceImpl playListService;
+   
+    @Autowired
+    
+    PlayListConverter playListConverter;
+    
     // lấy thông tin playlist
-    @RequestMapping(method = RequestMethod.GET, value = "/playlist/{id}")
-    PlayList getPlayList(@PathVariable int id){
-        return playListService.findById(id);
+   @GetMapping("/playlist/find-by-id/{id}")
+   public  PlayListDto findById(@PathVariable int id){
+        return playListConverter.convertToDto(playListService.findById(id));
     }
-
+  
     // Tìm playlist theo tên
-    @RequestMapping(method = RequestMethod.GET, value = "/playlist/{id}/{name}")
-    List<PlayList> getPlayListByNam(@PathVariable int id, @PathVariable String name){
-        return playListService.findByName(name,id);
+   @GetMapping("playlist/find-by-name/{name}")
+   public List<PlayListDto> findPlayListByName( @PathVariable String name){
+        return playListConverter.convertToDto(playListService.findByName(name));
     }
 
     // lấy tất cả playlist của người dùng
-    @RequestMapping(method = RequestMethod.GET, value = "/playlist/nguoidung/{id}")
-    List<PlayList> getPlayListByNguoiDung(@PathVariable int id){
-        return playListService.findByIdNguoiDung(id);
+   @GetMapping("playlist/find-by-idnguoidung/{id}")
+   public List<PlayListDto> findPlayListByIdNguoiDung(@PathVariable int id){
+        return playListConverter.convertToDto(playListService.findByIdNguoiDung(id));
     }
 
     // Cập nhật tên playlist
-    @RequestMapping(method = RequestMethod.PUT, value = "/updateplaylist")
-    void updatePlayList(@RequestBody PlayList playList){
-        playListService.updatePlayList(playList.getIdNguoiDung(),playList);
+  @PutMapping("playlisy/edit-playlist")
+  public PlayListDto updatePlayList(@RequestBody PlayListDto playListDto){
+	  PlayList playList = playListConverter.convertToEntity(playListDto);
+	  PlayListDto dto = playListConverter.convertToDto(playListService.updatePlayList(playList));
+		return dto;
     }
 
     // Thêm playlist
-    @RequestMapping(method = RequestMethod.POST, value = "/addplaylist")
-    void addPlayList(PlayList playList){
-        playListService.addPlayList(playList);
+   @PostMapping("playlist/add-playlist")
+   public  PlayListDto addPlayList(@RequestBody PlayListDto playListDto){
+	   PlayList playList = playListConverter.convertToEntity(playListDto);
+	   PlayListDto dto = playListConverter.convertToDto(playListService.addPlayList(playList));
+      return dto;
     }
 
     // Xóa 1 playlist
-    @RequestMapping(method = RequestMethod.DELETE, value = "/delplaylist/{id}")
-    void dellPlayList(@PathVariable int id){
-        playListService.delPlayList(id);
+   @DeleteMapping("playlist/delete-playlist/{id}")
+  public  void dellPlayList(@PathVariable int id){
+        playListService.deletePlayList(id);
     }
 }

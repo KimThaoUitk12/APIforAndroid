@@ -14,10 +14,6 @@ public class CommentDto {
 	
 	private String noiDung;
 	
-	//private BaiHatDto baiHat;
-	
-	//private NguoiDungDto nguoiDung;
-
 	public int getIdBaiHat() {
 		return idBaiHat;
 	}

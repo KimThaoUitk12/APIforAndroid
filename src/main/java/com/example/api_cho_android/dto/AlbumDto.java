@@ -3,7 +3,6 @@ package com.example.api_cho_android.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.api_cho_android.model.BaiHat;
 
 public class AlbumDto {
 	
@@ -15,7 +14,6 @@ public class AlbumDto {
 	
 	private int idCaSi;
 	
-	//private CaSiDto caSi;
 
 	private List<BaiHatDto> listBaiHat = new ArrayList<BaiHatDto>();
 	
@@ -60,13 +58,6 @@ public class AlbumDto {
 	}
 
 	
-	/*public CaSiDto getCaSi() {
-		return caSi;
-     }
-
-	public void setCaSi(CaSiDto caSi) {
-		this.caSi = caSi;
-	}*/
 
 	
 

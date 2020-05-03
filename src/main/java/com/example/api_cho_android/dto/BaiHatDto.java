@@ -23,9 +23,6 @@ public class BaiHatDto {
 	
 	private int idCaSi;
 
-   // private CaSiDto caSi;
-	
- //  private AlbumDto album;
 
 	private List<CommentDto> listComment = new ArrayList<CommentDto>();
 

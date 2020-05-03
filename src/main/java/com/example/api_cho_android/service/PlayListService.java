@@ -7,10 +7,16 @@ import java.util.List;
 
 @Service
 public interface PlayListService {
-    PlayList findById(int id);
-    List<PlayList> findByName(String name, int idNguoiDung);
-    List<PlayList> findByIdNguoiDung(int idNguoiDung);
-    void addPlayList(PlayList playList);
-    void delPlayList(int id);
-    void updatePlayList(int id, PlayList playList);
+	
+   public PlayList findById(int id);
+    
+   public  List<PlayList> findByName(String name);
+    
+   public List<PlayList> findByIdNguoiDung(int idNguoiDung);
+    
+   public  PlayList addPlayList(PlayList playList);
+    
+   public   void deletePlayList(int id);
+    
+   public PlayList updatePlayList( PlayList playList);
 }

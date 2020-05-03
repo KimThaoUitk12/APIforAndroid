@@ -16,16 +16,13 @@ public class AlbumConverter {
 
 	@Autowired
 	private BaiHatConverter baiHatConverter;
-	/*@Autowired
-	private CaSiConverter caSiConverter;
-*/	
+
 	public AlbumDto convertToDto(Album album) {
 		AlbumDto albumDto = new AlbumDto();
 		albumDto.setIdAlbum(album.getIdAlbum());
 		albumDto.setSoLuongBai(album.getSoLuongBai());
 		albumDto.setTenAlbum(album.getTenAlbum());
-		albumDto.setIdCasi(album.getIdAlbum());
-		//albumDto.setCaSi(caSiConverter.convertToDto(album.getCaSi()));
+		albumDto.setIdCasi(album.getIdCasi());
 		albumDto.setListBaiHat(baiHatConverter.convertToDto(album.getListBaiHat()));
 		return albumDto;
 	}
@@ -34,7 +31,7 @@ public class AlbumConverter {
 		album.setIdAlbum(albumDto.getIdAlbum());
 		album.setSoLuongBai(albumDto.getSoLuongBai());
 		album.setTenAlbum(albumDto.getTenAlbum());
-		album.setIdCasi(albumDto.getIdAlbum());
+		album.setIdCasi(albumDto.getIdCasi());
 		return album;
 	}
 
