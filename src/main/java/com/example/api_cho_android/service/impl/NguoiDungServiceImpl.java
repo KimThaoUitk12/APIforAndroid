@@ -5,6 +5,7 @@ import com.example.api_cho_android.model.NguoiDung;
 import com.example.api_cho_android.repository.NguoiDungRepository;
 import com.example.api_cho_android.service.NguoiDungService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -26,6 +27,10 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 	}
     @Override
     public NguoiDung addNguoiDung(NguoiDung nguoiDung) {
+    	String pass = nguoiDung.getPass();
+    	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String hashedPassword = passwordEncoder.encode(pass);
+		nguoiDung.setPass(hashedPassword);
        return nguoiDungRepository.saveAndFlush(nguoiDung);
     }
 
@@ -38,8 +43,10 @@ public class NguoiDungServiceImpl implements NguoiDungService {
     public NguoiDung updatePass( NguoiDung nguoiDung) {
     	NguoiDung edit = new NguoiDung();
     	edit =nguoiDungRepository.findById(nguoiDung.getIdNguoiDung()).get();
-        
-    	edit.setPass(nguoiDung.getPass());
+    	String pass = nguoiDung.getPass();
+    	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String hashedPassword = passwordEncoder.encode(pass);
+		edit.setPass(hashedPassword);
     	edit.setEmail(nguoiDung.getEmail());
     	edit.setTen(nguoiDung.getTen());
     	NguoiDung entity=   nguoiDungRepository.save(edit);
