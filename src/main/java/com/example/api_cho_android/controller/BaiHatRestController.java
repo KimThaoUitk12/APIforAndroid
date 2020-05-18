@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.api_cho_android.converter.BaiHatConverter;
@@ -50,32 +51,32 @@ public class BaiHatRestController {
 	}
 	
 	// tìm bài hát by id bai hát
-	@GetMapping("/baihat/find-by-idbaihat/{id}")
-	public BaiHatDto findBaiHatByIdBaiHat(@PathVariable int id) {
+	@GetMapping("/baihat/find-by-idbaihat")
+	public BaiHatDto findBaiHatByIdBaiHat(@RequestParam(value="id")  int id) {
 		return baiHatConverter.convertToDto(baiHatService.findById(id));
 	}
 		
     // tìm ca si by id bài hát	
-	@GetMapping("/casi/find-casi-by-idbaihat/{id}")
-	public CaSiDto findCaSiByIdBaiHat(@PathVariable int id) {
+	@GetMapping("/casi/find-casi-by-idbaihat")
+	public CaSiDto findCaSiByIdBaiHat(@RequestParam(value="id")  int id) {
 		return caSiConverter.convertToDto(baiHatService.findCaSiByIdBaiHat(id));
 	}
 	
 	//tìm bài hát by tên bài hát
-	@GetMapping("/baihat/find-by-tenbaihat/{tenBaiHat}")
-	public List<BaiHatDto> findBaiHatByTenBaiHat(@PathVariable String tenBaiHat) {
+	@GetMapping("/baihat/find-by-tenbaihat")
+	public List<BaiHatDto> findBaiHatByTenBaiHat(@RequestParam(value="tenBaiHat")  String tenBaiHat) {
 		return baiHatConverter.convertToDto(baiHatService.findBaiHatByTenBaiHat(tenBaiHat));
 	}
 	
 	//tìm bài hát by id ca sĩ
-	@GetMapping("/baihat/find-by-idcasi/{id}")
-	public List<BaiHatDto> findBaiHatByIdCasi(@PathVariable int id) {
+	@GetMapping("/baihat/find-by-idcasi")
+	public List<BaiHatDto> findBaiHatByIdCasi(@RequestParam(value="id")  int id) {
 		return baiHatConverter.convertToDto(baiHatService.findBaiHatByIdCasi(id));
 	}
 	
 	// tìm bài hát by id album
-	@GetMapping("/baihat/find-by-idalbum/{id}")
-	public List<BaiHatDto> findBaiHatByIdAlbum(@PathVariable int id) {
+	@GetMapping("/baihat/find-by-idalbum")
+	public List<BaiHatDto> findBaiHatByIdAlbum(@RequestParam(value="id")  int id) {
 		return baiHatConverter.convertToDto(baiHatService.findBaiHatByIdAlbum(id));
 	}
 	
@@ -96,8 +97,8 @@ public class BaiHatRestController {
 	}
 
 	// xóa bài hát
-	@DeleteMapping("/baihat/delete-baihat/{id}")
-	public void deleteBaiHat(@PathVariable int id) {
+	@DeleteMapping("/baihat/delete-baihat")
+	public void deleteBaiHat(@RequestParam(value="id")  int id) {
 		baiHatService.delete(id);
 	}
 	
@@ -106,6 +107,12 @@ public class BaiHatRestController {
 	public BaiHatDto editBaiHat(@RequestBody BaiHatDto baiHatDto) {
 		BaiHat baiHat = baiHatConverter.convertToEntity(baiHatDto);
 		BaiHatDto dto = baiHatConverter.convertToDto(baiHatService.edit(baiHat));
+		return dto;
+	}
+	
+	@PutMapping("/baihat/change-luotnghe")
+	public BaiHatDto editBaiHat(@RequestParam(value="id")  int id) {	
+		BaiHatDto dto = baiHatConverter.convertToDto(baiHatService.changeLuotNghe(id));
 		return dto;
 	}
 }

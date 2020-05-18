@@ -20,20 +20,20 @@ public class PlayListController {
     PlayListConverter playListConverter;
     
     // lấy thông tin playlist
-   @GetMapping("/playlist/find-by-id/{id}")
-   public  PlayListDto findById(@PathVariable int id){
+   @GetMapping("/playlist/find-by-id")
+   public  PlayListDto findById(@RequestParam(value="id") int id){
         return playListConverter.convertToDto(playListService.findById(id));
     }
   
     // Tìm playlist theo tên
-   @GetMapping("playlist/find-by-name/{name}")
-   public List<PlayListDto> findPlayListByName( @PathVariable String name){
+   @GetMapping("playlist/find-by-name")
+   public List<PlayListDto> findPlayListByName( @RequestParam(value="name") String name){
         return playListConverter.convertToDto(playListService.findByName(name));
     }
 
     // lấy tất cả playlist của người dùng
-   @GetMapping("playlist/find-by-idnguoidung/{id}")
-   public List<PlayListDto> findPlayListByIdNguoiDung(@PathVariable int id){
+   @GetMapping("playlist/find-by-idnguoidung")
+   public List<PlayListDto> findPlayListByIdNguoiDung(@RequestParam(value="id") int id){
         return playListConverter.convertToDto(playListService.findByIdNguoiDung(id));
     }
 
@@ -54,8 +54,8 @@ public class PlayListController {
     }
 
     // Xóa 1 playlist
-   @DeleteMapping("playlist/delete-playlist/{id}")
-  public  void dellPlayList(@PathVariable int id){
+   @DeleteMapping("playlist/delete-playlist")
+  public  void dellPlayList(@RequestParam(value="id") int id){
         playListService.deletePlayList(id);
     }
 }

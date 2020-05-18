@@ -17,14 +17,14 @@ public class NguoiDungController {
     private NguoiDungConverter nguoidungConverter;
     
     // lấy thông tin người dùng
-   @GetMapping("nguoidung/find-by-id/{id}")
-  public  NguoiDungDto getNguoiDung(@PathVariable int id){
+   @GetMapping("nguoidung/find-by-id")
+  public  NguoiDungDto getNguoiDung(@RequestParam(value="id") int id){
 	   
         return nguoidungConverter.convertToDto(nguoiDungService.getNguoiDung(id));
     }
 
-   @GetMapping("nguoidung/find-by-ten/{ten}")
-  public  NguoiDungDto findByTenNguoiDung(@PathVariable String ten){
+   @GetMapping("nguoidung/find-by-ten")
+  public  NguoiDungDto findByTenNguoiDung(@RequestParam(value="ten") String ten){
         return nguoidungConverter.convertToDto(nguoiDungService.findByTen(ten));
     }
 
@@ -37,8 +37,8 @@ public class NguoiDungController {
     }
 
     // xóa người dùng
-   @DeleteMapping("nguoidung/delete-nguoidung/{id}")
-    public  void delNguoiDung(@PathVariable int id){
+   @DeleteMapping("nguoidung/delete-nguoidung")
+    public  void delNguoiDung(@RequestParam(value="id") int id){
         nguoiDungService.deleteNguoiDung(id);
     }
 

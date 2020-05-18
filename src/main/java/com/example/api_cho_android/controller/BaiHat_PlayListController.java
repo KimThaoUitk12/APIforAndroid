@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -42,14 +43,14 @@ public class BaiHat_PlayListController {
 
     
     // xóa 1 bài hát khỏi playlist
-   @DeleteMapping("baihat_playlist/delete/{idPlayList}/{idBaiHat}")
-    void delBaiHat_PlayList(@PathVariable int idBaiHat, @PathVariable int idPlayList){
+   @DeleteMapping("baihat_playlist/delete-baihat")
+    void delBaiHat_PlayList( @RequestParam(value="idPlayList") int idPlayList,@RequestParam(value="idBaiHat") int idBaiHat){
         baiHat_playListService.delBaiHat_PlayList(idBaiHat,idPlayList);
     }
 
    // xóa tất cả bài hát trong 1 list
-   @DeleteMapping("baihat_playlist/delete/{idPlayList}")
-    void dell1PlayList(@PathVariable int idPlayList){
+   @DeleteMapping("baihat_playlist/delete-playlist")
+    void dell1PlayList(@RequestParam(value="idPlayList")  int idPlayList){
         baiHat_playListService.delete1List(idPlayList);
     }
 }

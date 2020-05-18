@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.api_cho_android.converter.CommentConverter;
@@ -34,14 +35,14 @@ public class CommentRestController {
 	}
 	
 	// tìm comment by id bai hát
-	@GetMapping("/comment/find-by-idbaihat/{id}")
-	public List<CommentDto> findCommentByIdBaiHat(@PathVariable int id) {
+	@GetMapping("/comment/find-by-idbaihat")
+	public List<CommentDto> findCommentByIdBaiHat(@RequestParam(value="id") int id) {
 		return commentConverter.convertToDto(commentService.findCommentByIdBaiHat(id));
 	}
 	
 	// tìm comment by id người dùng
-	@GetMapping("/comment/find-by-idnguoidung/{id}")
-	public List<CommentDto> findCommentByIdNguoiDung(@PathVariable int id) {
+	@GetMapping("/comment/find-by-idnguoidung")
+	public List<CommentDto> findCommentByIdNguoiDung(@RequestParam(value="id") int id) {
 		return commentConverter.convertToDto(commentService.findCommentByIdNguoiDung(id));
 	}
 	
