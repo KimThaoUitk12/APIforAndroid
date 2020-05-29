@@ -20,11 +20,7 @@ public class PlayListController {
     PlayListConverter playListConverter;
     
     // lấy thông tin playlist
-<<<<<<< HEAD
    @GetMapping("playlist/find-by-id")
-=======
-   @GetMapping("/playlist/find-by-id")
->>>>>>> 819934b47b08eae5d1bdd1712f6c3b20b28652ba
    public  PlayListDto findById(@RequestParam(value="id") int id){
         return playListConverter.convertToDto(playListService.findById(id));
     }

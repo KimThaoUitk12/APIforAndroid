@@ -35,11 +35,7 @@ public class CommentRestController {
 	}
 	
 	// tìm comment by id bai hát
-<<<<<<< HEAD
 	@GetMapping("api/comment/find-by-idbaihat")
-=======
-	@GetMapping("/comment/find-by-idbaihat")
->>>>>>> 819934b47b08eae5d1bdd1712f6c3b20b28652ba
 	public List<CommentDto> findCommentByIdBaiHat(@RequestParam(value="id") int id) {
 		return commentConverter.convertToDto(commentService.findCommentByIdBaiHat(id));
 	}
