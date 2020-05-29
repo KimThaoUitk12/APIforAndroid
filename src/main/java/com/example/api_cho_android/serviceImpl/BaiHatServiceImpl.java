@@ -122,4 +122,14 @@ public class BaiHatServiceImpl implements BaiHatService {
 		return caSi;
 	}
 
+	@Override
+	public BaiHat changeLuotNghe(int idBaiHat) {
+		BaiHat baiHat = new BaiHat();
+		baiHat = baiHatRepository.findById(idBaiHat).get();
+		int luotNghe= baiHat.getLuotNghe();
+		luotNghe++;
+		baiHat.setLuotNghe(luotNghe);
+		return baiHatRepository.saveAndFlush(baiHat);
+	}
+
 }

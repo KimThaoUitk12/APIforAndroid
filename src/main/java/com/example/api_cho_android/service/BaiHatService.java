@@ -32,4 +32,6 @@ public interface BaiHatService {
 		
 		public CaSi findCaSiByIdBaiHat(int idBaiHat);
 		
+		public BaiHat changeLuotNghe (int idBaiHat);
+		
 }
