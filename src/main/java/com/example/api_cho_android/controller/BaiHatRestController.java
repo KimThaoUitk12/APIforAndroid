@@ -44,9 +44,9 @@ public class BaiHatRestController {
 	
 	// lây top 100 bài hát có lượt nghe nhiều nhất
 	@GetMapping("/baihat/find-bxh")
-	public List<BaiHatDto> findTop100Bxh(){
+	public List<BaiHatDto> findTop20Bxh(){
 		List<BaiHat> listBaiHat=  new ArrayList<BaiHat>();
-		listBaiHat = baiHatService.findTop100Bxh();
+		listBaiHat = baiHatService.findTop20Bxh();
 		return baiHatConverter.convertToDto(listBaiHat);
 	}
 	

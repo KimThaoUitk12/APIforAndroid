@@ -87,9 +87,9 @@ public class BaiHatServiceImpl implements BaiHatService {
 	}
 	
 	@Override
-	public List<BaiHat> findTop100Bxh(){
+	public List<BaiHat> findTop20Bxh(){
 		Page<BaiHat> page = baiHatRepository.findAll(
-				  PageRequest.of(0, 100, Sort.by(Sort.Direction.DESC, "LuotNghe")));
+				  PageRequest.of(0, 20, Sort.by(Sort.Direction.DESC, "LuotNghe")));
 		List<BaiHat> listBaiHat = new ArrayList<BaiHat>();
 		listBaiHat= page.getContent();
 		return listBaiHat;

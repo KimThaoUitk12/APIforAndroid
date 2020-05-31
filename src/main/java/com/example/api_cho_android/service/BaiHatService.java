@@ -26,7 +26,7 @@ public interface BaiHatService {
 		
 		public List<BaiHat> findBaiHatByIdAlbum(int idAlbum);
 		
-		public List<BaiHat> findTop100Bxh( );
+		public List<BaiHat> findTop20Bxh( );
 		
 		public List<BaiHat> findRandom();
 		

@@ -22,7 +22,7 @@ import com.example.api_cho_android.service.impl.NguoiDungServiceImpl;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "/")
+@RequestMapping(value = "/api")
 public class JwtAuthenticationController {
 
 	@Autowired

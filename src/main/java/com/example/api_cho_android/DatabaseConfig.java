@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import javax.sql.DataSource;
 
 public class DatabaseConfig {
-	@Value("mysql://b83174d608b83c:e0e753e0@us-cdbr-east-06.cleardb.net/heroku_fd74ab704ece7be?reconnect=true")
+	@Value("mysql://ba07e718a59316:94df1975@us-cdbr-east-05.cleardb.net/heroku_fa942c7e576e67d?reconnect=true")
     private String dbUrl;
 
     @Bean
