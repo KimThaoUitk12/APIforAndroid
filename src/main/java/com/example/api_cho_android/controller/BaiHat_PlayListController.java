@@ -8,6 +8,9 @@ import com.example.api_cho_android.model.BaiHat_PlayList;
 import com.example.api_cho_android.service.impl.BaiHat_PlayListServiceImpl;
 import com.example.api_cho_android.serviceImpl.BaiHatServiceImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,25 +35,38 @@ public class BaiHat_PlayListController {
     
     // thêm 1 bài hát vào playlist
     @PostMapping("baihat_playlist/add-baihat_playlist")
-	public BaiHat_PlayListDto addBaiHat_PlayList(@RequestBody BaiHat_PlayListDto baiHat_PlayListDto) {
-    	BaiHat_PlayList bhpl = baiHat_playListConverter.convertToEntity(baiHat_PlayListDto);
-    	bhpl.setBaiHat(baiHatService.findById(bhpl.getIdBaiHat()));
-    	BaiHat_PlayListDto dto = baiHat_playListConverter.convertToDto(baiHat_playListService.addBaiHat_PlayList(bhpl));
-		return dto;
-	}
-    
-  
+ 	public BaiHat_PlayListDto addBaiHat_PlayList(@RequestBody BaiHat_PlayListDto baiHat_PlayListDto) {
+     	BaiHat_PlayList bhpl = baiHat_playListConverter.convertToEntity(baiHat_PlayListDto);
+     	bhpl.setBaiHat(baiHatService.findById(bhpl.getIdBaiHat()));
+     	BaiHat_PlayListDto dto = baiHat_playListConverter.convertToDto(baiHat_playListService.addBaiHat_PlayList(bhpl));
+ 		return dto;
+ 	}
+     
+    @PostMapping("baihat_playlist/add-list")
+  	public List<BaiHat_PlayListDto> addListBaiHat_PlayList(@RequestBody List<BaiHat_PlayListDto> listBaiHat_PlayListDto) {
+  		
+  		List<BaiHat_PlayListDto> listBaiHatDto	= new ArrayList<BaiHat_PlayListDto>();
+      	for(BaiHat_PlayListDto baihat: listBaiHat_PlayListDto)
+      	{
+  		BaiHat_PlayList bhpl = baiHat_playListConverter.convertToEntity(baihat);
+      	bhpl.setBaiHat(baiHatService.findById(bhpl.getIdBaiHat()));
+      	BaiHat_PlayListDto dto = baiHat_playListConverter.convertToDto(baiHat_playListService.addBaiHat_PlayList(bhpl));
+      	listBaiHatDto.add(dto);
+      	}
+  		return listBaiHatDto;
+  	}
+      
 
-    
-    // xóa 1 bài hát khỏi playlist
-   @DeleteMapping("baihat_playlist/delete-baihat")
-    void delBaiHat_PlayList( @RequestParam(value="idPlayList") int idPlayList,@RequestParam(value="idBaiHat") int idBaiHat){
-        baiHat_playListService.delBaiHat_PlayList(idBaiHat,idPlayList);
-    }
+     
+     // xóa 1 bài hát khỏi playlist
+    @DeleteMapping("baihat_playlist/delete-baihat")
+     void delBaiHat_PlayList( @RequestParam(value="idPlayList") int idPlayList,@RequestParam(value="idBaiHat") int idBaiHat){
+         baiHat_playListService.delBaiHat_PlayList(idBaiHat,idPlayList);
+     }
 
-   // xóa tất cả bài hát trong 1 list
-   @DeleteMapping("baihat_playlist/delete-playlist")
-    void dell1PlayList(@RequestParam(value="idPlayList")  int idPlayList){
-        baiHat_playListService.delete1List(idPlayList);
-    }
+    // xóa tất cả bài hát trong 1 list
+    @DeleteMapping("baihat_playlist/delete-playlist")
+     void dell1PlayList(@RequestParam(value="idPlayList")  int idPlayList){
+         baiHat_playListService.delete1List(idPlayList);
+     }
 }

@@ -2,7 +2,7 @@ package com.example.api_cho_android.service;
 
 import java.util.List;
 
-
+import com.example.api_cho_android.model.BaiHat;
 import com.example.api_cho_android.model.CaSi;
 
 public interface CaSiService {
@@ -18,6 +18,8 @@ public interface CaSiService {
 		public void delete(int id);
 		
 		public CaSi edit(CaSi caSi);
+		
+		public List<CaSi> findRandom();
 		
 	/*	public CaSi findCaSiByIdAbum(int idAbum);
 		

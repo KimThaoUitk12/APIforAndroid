@@ -20,5 +20,6 @@ public interface BaiHatRepository extends JpaRepository<BaiHat,Integer>{
 	@Query("select b from BaiHat b where b.idAlbum=?1")
 	List<BaiHat> findBaiHatByIdAlbum(int idAlbum);
 	
-	
+	@Query("select b from BaiHat b where b.tenBaiHat LIKE %?1%")
+	List<BaiHat> findBaiHatByStringLike(String tenbaihat);
 }

@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.api_cho_android.converter.CaSiConverter;
+import com.example.api_cho_android.dto.BaiHatDto;
 import com.example.api_cho_android.dto.CaSiDto;
+import com.example.api_cho_android.model.BaiHat;
 import com.example.api_cho_android.model.CaSi;
 import com.example.api_cho_android.service.CaSiService;
 
@@ -34,7 +36,6 @@ public class CaSiRestController {
 	@Autowired
 	private CaSiConverter caSiConverter;
 	
-	// lấy tất cả ca sĩ
 	@GetMapping("/casi/find-all")
 	public List<CaSiDto> findAllCaSi(){
 		List<CaSi> listCaSi =  new ArrayList<CaSi>();
@@ -75,6 +76,13 @@ public class CaSiRestController {
 		CaSi caSi = caSiConverter.convertToEntity(caSiDto);
 		CaSiDto dto = caSiConverter.convertToDto(caSiService.edit(caSi));
 		return dto;
+	}
+	// lay 3 casi random
+	@GetMapping("/casi/find-random")
+	public List<CaSiDto> findRandom(){
+		List<CaSi> listCaSi=  new ArrayList<CaSi>();
+		listCaSi = caSiService.findRandom();
+		return caSiConverter.convertToDto(listCaSi);
 	}
 	
 }

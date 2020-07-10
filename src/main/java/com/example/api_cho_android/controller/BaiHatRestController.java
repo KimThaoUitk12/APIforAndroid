@@ -34,7 +34,6 @@ public class BaiHatRestController {
 	@Autowired
 	private CaSiConverter caSiConverter;
 	
-	//Lấy tất cả baihat
 	@GetMapping("/baihat/find-all")
 	public List<BaiHatDto> findAllBaiHat(){
 		List<BaiHat> listBaiHat=  new ArrayList<BaiHat>();
@@ -114,5 +113,10 @@ public class BaiHatRestController {
 	public BaiHatDto editBaiHat(@RequestParam(value="id")  int id) {	
 		BaiHatDto dto = baiHatConverter.convertToDto(baiHatService.changeLuotNghe(id));
 		return dto;
+	}
+	
+	@GetMapping("/baihat/find-by-stringlike")
+	public List<BaiHatDto> findBaiHatByStringLike(@RequestParam(value="tenBaiHat")  String tenBaiHat) {
+		return baiHatConverter.convertToDto(baiHatService.findBaiHatByStringLike(tenBaiHat));
 	}
 }

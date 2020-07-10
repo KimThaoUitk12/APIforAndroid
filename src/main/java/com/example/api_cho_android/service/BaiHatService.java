@@ -30,6 +30,8 @@ public interface BaiHatService {
 		
 		public List<BaiHat> findRandom();
 		
+		public List<BaiHat> findBaiHatByStringLike(String tenBaiHat);
+		
 		public CaSi findCaSiByIdBaiHat(int idBaiHat);
 		
 		public BaiHat changeLuotNghe (int idBaiHat);

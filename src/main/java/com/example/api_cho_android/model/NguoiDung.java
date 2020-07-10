@@ -16,6 +16,7 @@ public class NguoiDung {
 	@GenericGenerator(name="gen",strategy="increment")
 	@GeneratedValue(generator="gen")
     private int idNguoiDung;
+    @Column(nullable = false, unique = true)
     private String ten;
     private String email;
     private String pass;

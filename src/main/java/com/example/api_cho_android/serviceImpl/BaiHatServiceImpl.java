@@ -132,4 +132,11 @@ public class BaiHatServiceImpl implements BaiHatService {
 		return baiHatRepository.saveAndFlush(baiHat);
 	}
 
+	@Override
+	public List<BaiHat> findBaiHatByStringLike(String tenBaiHat) {
+		List<BaiHat> listBaiHat = new ArrayList<BaiHat>();
+		listBaiHat = baiHatRepository.findBaiHatByStringLike(tenBaiHat);
+		return listBaiHat;
+	}
+
 }
